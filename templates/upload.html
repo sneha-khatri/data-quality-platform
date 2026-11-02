@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block body %}<h2>Import records (CSV)</h2>
+<p>Columns: name, email, phone, address, city</p>
+<form method="post" enctype="multipart/form-data"><input type="file" name="file" accept=".csv" required>
+<button>Upload &amp; Analyse</button></form>{% endblock %}

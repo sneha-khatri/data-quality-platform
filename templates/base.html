@@ -1,0 +1,17 @@
+<!doctype html><html><head><meta charset="utf-8"><title>DQ Platform</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:0;background:#f5f6fa;color:#222}
+nav{background:#1f2a44;padding:12px 24px;display:flex;gap:18px;align-items:center}
+nav a{color:#fff;text-decoration:none}nav .r{margin-left:auto;color:#aab}
+main{max-width:1100px;margin:24px auto;padding:0 16px}
+table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:8px 10px;border-bottom:1px solid #eee;text-align:left;font-size:14px}
+th{background:#eef0f7}.card{display:inline-block;background:#fff;padding:16px 24px;margin:6px;border-radius:8px;min-width:150px;box-shadow:0 1px 3px #0002}
+.card b{font-size:28px;display:block}.ok{background:#d8f3dc;padding:8px}.err{background:#ffd6d6;padding:8px}
+.good{color:#1b8a3a}.mid{color:#c27c00}.bad{color:#c62828}button{cursor:pointer;padding:4px 10px}
+input{padding:5px}
+</style></head><body>
+{% if session.user %}<nav><a href="/">Dashboard</a><a href="/upload">Import</a><a href="/records">Records</a>
+<a href="/duplicates">Duplicates</a><a href="/history">History</a><a href="/export">Export</a>
+<span class="r">{{session.user}} ({{session.role}}) · <a href="/logout">Logout</a></span></nav>{% endif %}
+<main>{% for c,m in get_flashed_messages(with_categories=true) %}<p class="{{c}}">{{m}}</p>{% endfor %}
+{% block body %}{% endblock %}</main></body></html>

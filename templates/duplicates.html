@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block body %}<h2>Potential duplicates</h2>
+<table><tr><th>Similarity</th><th>Record A</th><th>Record B</th><th>Action</th></tr>
+{% for d in rows %}<tr><td>{{(d.similarity*100)|round(1)}}%</td>
+<td>#{{d.a}} {{d.an}}<br>{{d.ae}}<br>{{d.ap}} · {{d.ac}}</td>
+<td>#{{d.b}} {{d.bn}}<br>{{d.be}}<br>{{d.bp}} · {{d.bc}}</td>
+<td>{% if session.role in ('admin','reviewer') %}
+<form method="post" action="/duplicates/{{d.id}}/merge" style="display:inline"><button>Merge B into A</button></form>
+<form method="post" action="/duplicates/{{d.id}}/reject" style="display:inline"><button>Not duplicate</button></form>{% endif %}</td></tr>
+{% else %}<tr><td colspan="4">No pending duplicates.</td></tr>{% endfor %}</table>{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block body %}<h2>Data Quality Dashboard</h2>
+<div class="card"><b>{{s.total}}</b>Active records</div>
+<div class="card"><b>{{s.avg}}</b>Avg quality score</div>
+<div class="card"><b>{{s.dups}}</b>Pending duplicates</div>
+<div class="card"><b>{{s.low}}</b>Low score (&lt;70)</div>
+<div class="card"><b>{{s.missing}}</b>With missing fields</div>
+<div class="card"><b>{{s.fixable}}</b>Auto-fix suggestions</div>{% endblock %}

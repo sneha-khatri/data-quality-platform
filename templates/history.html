@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block body %}<h2>Correction history</h2>
+<table><tr><th>When</th><th>Record</th><th>Field</th><th>Old</th><th>New</th><th>Action</th><th>By</th></tr>
+{% for h in rows %}<tr><td>{{h.at}}</td><td>#{{h.record_id}}</td><td>{{h.field}}</td><td>{{h.old}}</td><td>{{h.new}}</td><td>{{h.action}}</td><td>{{h.by}}</td></tr>{% endfor %}</table>{% endblock %}
