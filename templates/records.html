@@ -1,7 +1,12 @@
 {% extends "base.html" %}{% block body %}<h2>Records (lowest quality first)</h2>
-<table><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Address</th><th>City</th><th>Score</th><th>Issues</th><th>Suggested fix</th></tr>
+<table><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Address</th><th>City</th><th>Score</th><th>Issues</th><th>Suggested fix</th><th>Edit</th></tr>
 {% for r in rows %}{% set sg = suggest(r) %}<tr>
 <td>{{r.id}}</td><td>{{r.name}}</td><td>{{r.email}}</td><td>{{r.phone}}</td><td>{{r.address}}</td><td>{{r.city}}</td>
 <td class="{{'good' if r.score>=85 else 'mid' if r.score>=70 else 'bad'}}"><b>{{r.score}}</b></td><td>{{r.issues}}</td>
 <td>{% if sg %}{% for f,v in sg.items() %}{{f}} → {{v}}<br>{% endfor %}
-{% if session.role in ('admin','reviewer') %}<form method="post" action="/records/{{r.id}}/approve"><button>Approve</button></form>{% endif %}{% endif %}</td></tr>{% endfor %}</table>{% endblock %}
+{% if session.role in ('admin','reviewer') %}<form method="post" action="/records/{{r.id}}/approve"><button>Approve</button></form>{% endif %}{% endif %}</td>
+<td>{% if session.role in ('admin','reviewer') %}<details><summary>Edit</summary>
+<form method="post" action="/records/{{r.id}}/edit">
+<input name="name" value="{{r.name}}" placeholder="name"><br><input name="email" value="{{r.email}}" placeholder="email"><br>
+<input name="phone" value="{{r.phone}}" placeholder="phone"><br><input name="address" value="{{r.address}}" placeholder="address"><br>
+<input name="city" value="{{r.city}}" placeholder="city"><br><button>Save</button></form></details>{% endif %}</td></tr>{% endfor %}</table>{% endblock %}
